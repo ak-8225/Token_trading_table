@@ -12,7 +12,7 @@ import { memo } from "react"
 import { formatNumber } from "@/lib/utils"
 
 // Sparkline SVG component
-function Sparkline({ data, color = "#4ade80", bg = "#18181b" }: { data: number[]; color?: string; bg?: string }) {
+function Sparkline({ data, color = "#4ade80", bg = "#18181b", fill = "#134e4a" }: { data: number[]; color?: string; bg?: string; fill?: string }) {
   const width = 60
   const height = 32
   const min = Math.min(...data)
@@ -20,16 +20,31 @@ function Sparkline({ data, color = "#4ade80", bg = "#18181b" }: { data: number[]
   const points = data.map((d, i) => {
     const x = (i / (data.length - 1)) * (width - 4) + 2
     const y = height - 2 - ((d - min) / (max - min || 1)) * (height - 6)
-    return `${x},${y}`
+    return [x, y]
   })
+  const linePoints = points.map(([x, y]) => `${x},${y}`).join(" ")
+  // Area fill path
+  const areaPoints = [
+    [points[0][0], height - 2],
+    ...points,
+    [points[points.length - 1][0], height - 2],
+  ]
+    .map(([x, y]) => `${x},${y}`)
+    .join(" ")
   return (
     <svg width={width} height={height} style={{ display: "block" }}>
       <rect x="0" y="0" width={width} height={height} rx="6" fill={bg} />
       <polyline
+        fill={fill}
+        stroke="none"
+        points={areaPoints}
+        opacity={0.18}
+      />
+      <polyline
         fill="none"
         stroke={color}
         strokeWidth="2"
-        points={points.join(" ")}
+        points={linePoints}
       />
     </svg>
   )
@@ -42,7 +57,10 @@ interface TableRowComponentProps {
 export const TableRowComponent = memo(function TableRowComponent({ token }: TableRowComponentProps) {
   // Use token.sparkline or fallback to dummy data
   const sparkData = Array.isArray((token as any).sparkline) ? (token as any).sparkline : [10, 15, 12, 18, 14, 17, 13]
-  const sparkColor = (token as any).sparkColor || "#4ade80"
+  // Use green for positive, red for negative price change
+  const isPositive = typeof token.priceChange24h === "number" ? token.priceChange24h >= 0 : true
+  const color = isPositive ? "#4ade80" : "#fb7185"
+  const fill = isPositive ? "#4ade80" : "#fb7185"
   return (
     <TableRow className="border-b border-[#2a2a2a] hover:bg-[#0f0f0f] transition-colors h-[88px]">
       {/* Column 1: Pair Info - 300px */}
@@ -52,7 +70,7 @@ export const TableRowComponent = memo(function TableRowComponent({ token }: Tabl
 
       {/* Sparkline Visual - 70px */}
       <TableCell className="py-2 pr-2 text-center" style={{ width: "70px", minWidth: "70px", maxWidth: "70px" }}>
-        <Sparkline data={sparkData} color={sparkColor} />
+        <Sparkline data={sparkData} color={color} fill={fill} />
       </TableCell>
 
       {/* Column 2: Market Cap - 140px */}
