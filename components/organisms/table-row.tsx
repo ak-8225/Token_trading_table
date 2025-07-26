@@ -23,23 +23,17 @@ function Sparkline({ data, color = "#4ade80", bg = "#18181b", fill = "#134e4a" }
     return [x, y]
   })
   const linePoints = points.map(([x, y]) => `${x},${y}`).join(" ")
-  // Area fill path
-  const areaPoints = [
-    [points[0][0], height - 2],
-    ...points,
-    [points[points.length - 1][0], height - 2],
-  ]
-    .map(([x, y]) => `${x},${y}`)
-    .join(" ")
+  // Area fill path (use a solid path, not polyline)
+  const areaPath = [
+    `M${points[0][0]},${height - 2}`,
+    ...points.map(([x, y]) => `L${x},${y}`),
+    `L${points[points.length - 1][0]},${height - 2}`,
+    "Z"
+  ].join(" ")
   return (
     <svg width={width} height={height} style={{ display: "block" }}>
       <rect x="0" y="0" width={width} height={height} rx="6" fill={bg} />
-      <polyline
-        fill={fill}
-        stroke="none"
-        points={areaPoints}
-        opacity={0.18}
-      />
+      <path d={areaPath} fill={fill} opacity={0.18} />
       <polyline
         fill="none"
         stroke={color}
