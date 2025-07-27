@@ -105,42 +105,53 @@ export default function Header() {
                       <ChevronDown className="w-4 h-4 text-white ml-2" />
                     </button>
                     {showDisplayDropdown && (
-                      <div className="absolute right-0 top-full mt-2 w-[420px] bg-[#18181b] border border-[#232323] rounded-2xl shadow-2xl z-50 flex flex-col py-0" style={{maxHeight:'600px',overflowY:'auto'}}>
-                        <div className="mb-6">
-                          <div className="text-[#cdcdcd] text-[18px] font-medium mb-3 mt-4 ml-4">Metrics</div>
-                          <div className="flex gap-4 mb-6 px-4">
-                            <button className="bg-[#23253a] text-white px-6 py-4 rounded-lg w-1/2 font-semibold border border-[#23253a] flex flex-col items-center justify-center text-[18px]" style={{boxShadow:'0 0 0 2px #23253a'}}>
-                              MC 77K<br/><span className='text-[15px] text-[#bfcaff] mt-1'>Small</span>
+                      <div className="absolute right-0 top-full mt-2 w-[420px] bg-[#18181b] border border-[#232323] rounded-2xl shadow-2xl z-50 flex flex-col p-0" style={{maxHeight:'600px',overflowY:'auto'}}>
+                        {/* Metrics Section */}
+                        <div className="pt-6 pb-2 px-6">
+                          <div className="text-[#bfcaff] text-[18px] font-medium mb-2">Metrics</div>
+                          <div className="flex gap-8 mb-4">
+                            <button className="bg-[#23253a] text-white px-8 py-5 rounded-xl w-1/2 font-semibold border border-[#23253a] flex flex-col items-center justify-center text-[20px] shadow-[0_0_0_2px_#23253a]">
+                              MC 77K<br/><span className='text-[16px] text-[#bfcaff] mt-2'>Small</span>
                             </button>
-                            <button className="bg-transparent text-[#bfcaff] px-6 py-4 rounded-lg w-1/2 border border-[#23253a] font-semibold flex flex-col items-center justify-center text-[18px]">MC <span className='font-bold'>77K</span><br/><span className='text-[15px] mt-1'>Large</span></button>
+                            <button className="bg-transparent text-[#bfcaff] px-8 py-5 rounded-xl w-1/2 border border-[#23253a] font-semibold flex flex-col items-center justify-center text-[20px]">MC <span className='font-bold'>77K</span><br/><span className='text-[16px] mt-2'>Large</span></button>
                           </div>
-                          <div className="text-[#cdcdcd] text-[18px] font-medium mb-3 ml-4">Quick Buy</div>
-                          <div className="flex gap-4 mb-6 px-4">
-                            <button className="bg-[#23253a] text-[#6C8CFF] px-6 py-3 rounded-lg border border-[#23253a] flex flex-col items-center font-semibold text-[16px] w-1/4"><span className='font-bold text-[15px] mb-1'>⚡7</span> Small</button>
-                            <button className="bg-[#23253a] text-[#6C8CFF] px-6 py-3 rounded-lg border border-[#23253a] flex flex-col items-center font-semibold text-[16px] w-1/4"><span className='font-bold text-[15px] mb-1'>⚡7</span> Large</button>
-                            <button className="bg-[#23253a] text-[#6C8CFF] px-6 py-3 rounded-lg border border-[#23253a] flex flex-col items-center font-semibold text-[16px] w-1/4"><span className='font-bold text-[15px] mb-1'>⚡7</span> Mega</button>
-                            <button className="bg-[#23253a] text-[#6C8CFF] px-6 py-3 rounded-lg border border-[#23253a] flex flex-col items-center font-semibold text-[16px] w-1/4 opacity-60"><span className='font-bold text-[15px] mb-1'>⚡7</span> Ultra</button>
+                          <div className="text-[#bfcaff] text-[18px] font-medium mb-2">Quick Buy</div>
+                          <div className="flex gap-4 mb-4">
+                            <button className="bg-[#23253a] text-[#6C8CFF] px-6 py-4 rounded-xl border border-[#23253a] flex flex-col items-center font-semibold text-[17px] w-1/4 shadow-[0_0_0_2px_#23253a]">
+                              <span className='font-bold text-[16px] mb-2'>⚡7</span> Small
+                            </button>
+                            <button className="bg-[#23253a] text-[#6C8CFF] px-6 py-4 rounded-xl border border-[#23253a] flex flex-col items-center font-semibold text-[17px] w-1/4 shadow-[0_0_0_2px_#23253a]">
+                              <span className='font-bold text-[16px] mb-2'>⚡7</span> Large
+                            </button>
+                            <button className="bg-[#23253a] text-[#6C8CFF] px-6 py-4 rounded-xl border border-[#23253a] flex flex-col items-center font-semibold text-[17px] w-1/4 shadow-[0_0_0_2px_#23253a]">
+                              <span className='font-bold text-[16px] mb-2'>⚡7</span> Mega
+                            </button>
+                            <button className="bg-[#23253a] text-[#6C8CFF] px-6 py-4 rounded-xl border border-[#23253a] flex flex-col items-center font-semibold text-[17px] w-1/4 shadow-[0_0_0_2px_#23253a] opacity-50">
+                              <span className='font-bold text-[16px] mb-2'>⚡7</span> Ultra
+                            </button>
                           </div>
-                          <div className="flex items-center gap-2 mb-6 ml-4">
-                            <span className="text-[#cdcdcd] flex items-center gap-2 text-[20px]"><span className="text-xl">☀️</span> Grey</span>
-                          </div>
-                        </div>
-                        <hr className="border-[#23253a] mb-6" />
-                        <div className="mb-6 px-4">
-                          <div className="flex flex-col gap-6">
-                            <div className="flex items-center gap-3 text-[#cdcdcd] text-[17px]"><span className="text-lg">🔍</span> Show Search Bar</div>
-                            <div className="flex items-center gap-3 text-[#cdcdcd] text-[17px]"><span className="text-lg">👁️</span> Show Hidden Tokens</div>
-                            <div className="flex items-center gap-3 text-[#cdcdcd] text-[17px]"><span className="text-lg">🖼️</span> Circle Images</div>
-                            <div className="flex items-center gap-3 text-[#cdcdcd] text-[17px]"><span className="text-lg">⏳</span> Progress Bar</div>
-                            <div className="flex items-center gap-3 text-[#cdcdcd] text-[17px]"><span className="text-lg">🗃️</span> Spaced Tables</div>
+                          <div className="flex items-center gap-2 mb-2">
+                            <span className="text-[#bfcaff] flex items-center gap-2 text-[21px]"><span className="text-xl">☀️</span> Grey</span>
                           </div>
                         </div>
-                        <hr className="border-[#23253a] mb-6" />
-                        <div className="mb-4 px-4">
-                          <div className="text-[#cdcdcd] text-[18px] font-medium mb-3">Customize rows</div>
+                        <div className="border-t border-[#23253a] mx-6"></div>
+                        {/* Options Section */}
+                        <div className="py-6 px-6">
+                          <div className="flex flex-col gap-7">
+                            <div className="flex items-center gap-3 text-[#bfcaff] text-[18px]"><span className="text-[20px]">🔍</span> Show Search Bar</div>
+                            <div className="flex items-center gap-3 text-[#bfcaff] text-[18px]"><span className="text-[20px]">👁️</span> Show Hidden Tokens</div>
+                            <div className="flex items-center gap-3 text-[#bfcaff] text-[18px]"><span className="text-[20px]">🖼️</span> Circle Images</div>
+                            <div className="flex items-center gap-3 text-[#bfcaff] text-[18px]"><span className="text-[20px]">⏳</span> Progress Bar</div>
+                            <div className="flex items-center gap-3 text-[#bfcaff] text-[18px]"><span className="text-[20px]">🗃️</span> Spaced Tables</div>
+                          </div>
+                        </div>
+                        <div className="border-t border-[#23253a] mx-6"></div>
+                        {/* Customize Rows Section */}
+                        <div className="py-6 px-6">
+                          <div className="text-[#bfcaff] text-[18px] font-medium mb-3">Customize rows</div>
                           <div className="flex flex-wrap gap-3">
                             {['Market Cap','Volume','Fees','TX','Socials','Holders','Pro Traders','KOLs','Dev Migrations','Top 10 Holders','Dev Holding','Funding Time','Snipers','Insiders','Bundlers','Dex Paid'].map(row => (
-                              <span key={row} className="bg-[#23253a] text-[#bfcaff] px-4 py-2 rounded-lg text-[15px] font-semibold">{row}</span>
+                              <span key={row} className="bg-[#23253a] text-[#bfcaff] px-5 py-2 rounded-xl text-[16px] font-semibold shadow-[0_0_0_2px_#23253a]">{row}</span>
                             ))}
                           </div>
                         </div>
