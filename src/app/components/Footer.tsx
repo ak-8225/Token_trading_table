@@ -256,7 +256,7 @@ export default function Footer() {
                 <ChevronDown className="w-4 h-4 text-[#888] ml-2" />
               </button>
               {showRegionDropdown && (
-                <div className="absolute left-0 mt-2 w-44 bg-[#18181b] border border-[#292929] rounded-xl shadow-lg z-50 flex flex-col py-2" style={{maxHeight:'400px',overflowY:'auto'}}>
+                <div className="absolute left-0 bottom-full mb-2 w-44 bg-[#18181b] border border-[#292929] rounded-xl shadow-lg z-50 flex flex-col py-2" style={{maxHeight:'400px',overflowY:'auto'}}>
                   {regionList.map(region => (
                     <div
                       key={region}
