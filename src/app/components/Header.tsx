@@ -16,12 +16,12 @@ export default function Header() {
           <div className="flex items-center min-w-0 flex-1">
             {/* Logo and Brand */}
             <div className="flex items-center space-x-1 sm:space-x-2 flex-shrink-0 select-none">
-              <svg width="32" height="32" viewBox="0 0 32 32" className="mr-3" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <polygon points="16,6 28,22 4,22" fill="white" />
-                <polygon points="16,11 24,22 8,22" fill="white" opacity="0.7" />
+              <svg width="32" height="32" viewBox="0 0 32 32" className="mr-4" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <polygon points="16,10 24,18 8,18" fill="white" />
+                <polygon points="10,22 22,22 16,28" fill="white" />
               </svg>
-              <span className="font-bold text-white text-[24px] tracking-tight" style={{letterSpacing:'-1px',fontFamily:'inherit'}}>AXIOM</span>
-              <span className="text-[#bfcaff] text-[20px] font-medium ml-2" style={{fontFamily:'inherit'}}>Pro</span>
+              <span className="font-bold text-white text-[28px] tracking-tight" style={{letterSpacing:'-1px',fontFamily:'inherit'}}>AXIOM</span>
+              <span className="text-white text-[24px] font-normal ml-3" style={{fontFamily:'inherit'}}>Pro</span>
             </div>
 
             {/* Navigation – scrollable if overflow */}
