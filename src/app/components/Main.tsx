@@ -144,6 +144,8 @@ const enhanceTokenData = (tokens: Token[]): EnhancedToken[] => {
     })));
   }
 
+
+
   return expandedTokens.map((token, index) => {
     // Categorize tokens based on age and market cap - distribute more evenly
     let category: 'new' | 'final' | 'migrated' = 'migrated';
@@ -300,7 +302,9 @@ const ColumnSection: React.FC<ColumnSectionProps> = ({
   tokens,
   count,
   isNewPairs = false,
+  
 }) => {
+    const [selectedPriority, setSelectedPriority] = useState<'1' | '2' | '3'>('1');
   return (
     <div className="flex-1 h-full flex flex-col overflow-hidden" style={{backgroundColor: '#101114'}}>
       {/* Column Header - Responsive */}
@@ -321,9 +325,9 @@ const ColumnSection: React.FC<ColumnSectionProps> = ({
           
           {/* P1 P2 P3 buttons */}
           <div className="flex items-center space-x-1">
-            <span className="bg-[#3B82F6] text-white px-2 py-1 rounded text-xs font-medium">P1</span>
-            <span className="text-[#9CA3AF] px-1 py-1 text-xs">P2</span>
-            <span className="text-[#9CA3AF] px-1 py-1 text-xs">P3</span>
+            <button onClick={()=>setSelectedPriority('1')} className={`${selectedPriority == '1' ? "bg-[#3B82F6]" : "text-[#9CA3AF]"} text-white px-2 py-1 rounded text-xs font-medium cursor-pointer`}>P1</button>
+            <button onClick={()=>setSelectedPriority('2')} className={`${selectedPriority == '2' ? "bg-[#3B82F6]" : "text-[#9CA3AF]"} text-white px-2 py-1 rounded text-xs font-medium cursor-pointer`}>P2</button>
+            <button onClick={()=>setSelectedPriority('3')} className={`${selectedPriority == '3' ? "bg-[#3B82F6]" : "text-[#9CA3AF]"} text-white px-2 py-1 rounded text-xs font-medium cursor-pointer`}>P3</button>
           </div>
           
           {/* Sort icon */}
