@@ -1,1 +1,10 @@
-{"pages":{},"app":{"/Users/akshaykumar/Desktop/token trading/src/app/layout":["static/media/e4af272ccee01ff0-s.p.woff2"]},"appUsingSizeAdjust":true,"pagesUsingSizeAdjust":false}
+{
+  "app": {
+    "[project]/src/app/page": [
+      "static/media/06ba6ef833b337bc-s.p.0faac26c.woff2"
+    ]
+  },
+  "appUsingSizeAdjust": true,
+  "pages": {},
+  "pagesUsingSizeAdjust": false
+}

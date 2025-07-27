@@ -1,6 +1,10 @@
 "use client";
 
 import React, { useState, useRef, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { RootState } from "../store";
+import { closeTab } from "../slices/tabsSlice";
+import { setSelectedPreset } from "../slices/presetSlice";
 import {
   Star,
   ChevronDown,
@@ -63,8 +67,9 @@ const regionList = [
 export default function Footer() {
   const [showPresetDropdown, setShowPresetDropdown] = useState(false);
   const [activeTab, setActiveTab] = useState("wallet");
-  const [tabs, setTabs] = useState(trackerTabs);
-  const [selectedPreset, setSelectedPreset] = useState(presetList[0]);
+  const dispatch = useDispatch();
+  const tabs = useSelector((state: RootState) => state.tabs);
+  const selectedPreset = useSelector((state: RootState) => state.preset.selectedPreset);
   const [selectedRegion, setSelectedRegion] = useState(regionList[8]); // Default to GLOBAL
   const [showRegionDropdown, setShowRegionDropdown] = useState(false);
   const [showDisplayDropdown, setShowDisplayDropdown] = useState(false);
@@ -84,7 +89,7 @@ export default function Footer() {
     return () => window.removeEventListener('mousedown', handle);
   }, [showPresetDropdown, showRegionDropdown]);
 
-  const closeTab = (key: string) => setTabs(prev => prev.filter(tab => tab.key !== key));
+  const handleCloseTab = (key: string) => dispatch(closeTab(key));
   const switchTab = (key: string) => setActiveTab(key);
 
   return (
@@ -135,7 +140,7 @@ export default function Footer() {
                       key={name}
                       className={`py-2 px-6 text-[15px] cursor-pointer ${name === selectedPreset ? 'bg-[#1976d2] text-white font-bold' : 'hover:bg-[#222f52] text-[#cdcdcd]'}`}
                       onClick={() => {
-                        setSelectedPreset(name);
+                        dispatch(setSelectedPreset(name));
                         setShowPresetDropdown(false);
                       }}
                     >
@@ -199,7 +204,7 @@ export default function Footer() {
                 }`}
                 onClick={() => switchTab(tab.key)}
               >
-                {tab.icon}
+                <i className={`text-[16px] ${tab.iconClass} text-[#888] mr-1`}></i>
                 <span className="truncate hidden sm:inline">{tab.label}</span>
                 <span className="truncate sm:hidden">{tab.label.split(' ')[0]}</span>
                 {tab.alert != null && (
@@ -208,10 +213,10 @@ export default function Footer() {
                 {tab.closeable && (
                   <X
                     className="w-2 h-2 sm:w-3 sm:h-3 ml-1 sm:ml-2 cursor-pointer hover:text-red-500"
-                    onClick={e => { e.stopPropagation(); closeTab(tab.key); }}
+                    onClick={e => { e.stopPropagation(); handleCloseTab(tab.key); }}
                   />
                 )}
-          </div>
+              </div>
             ))}
           </nav>
 

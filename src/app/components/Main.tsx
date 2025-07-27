@@ -1,16 +1,27 @@
 "use client";
 
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import { enhanceTokenData, mockTokens } from "./tokenUtils";
 import ColumnSection from "./ColumnSection";
+import { useSelector, useDispatch } from "react-redux";
+import { RootState } from "../store";
+import { setTokens } from "../slices/tokenSlice";
 
 
 // --- Main Component ---
 const Main: React.FC = () => {
   const [searchTerm] = useState('');
-  const enhancedTokens = useMemo(() => enhanceTokenData(mockTokens), []);
+  const dispatch = useDispatch();
+  const tokens = useSelector((state: RootState) => state.token.tokens);
+
+  useEffect(() => {
+    if (!tokens || tokens.length === 0) {
+      dispatch(setTokens(enhanceTokenData(mockTokens)));
+    }
+  }, [dispatch, tokens]);
+
   const categorizedTokens = useMemo(() => {
-    const filtered = enhancedTokens.filter(token =>
+    const filtered = tokens.filter(token =>
       token.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
       token.symbol.toLowerCase().includes(searchTerm.toLowerCase())
     );
@@ -19,7 +30,7 @@ const Main: React.FC = () => {
       final: filtered.filter(token => token.category === 'final'),
       migrated: filtered.filter(token => token.category === 'migrated')
     };
-  }, [enhancedTokens, searchTerm]);
+  }, [tokens, searchTerm]);
   
   return (
     <div className="min-h-screen bg-[#0A0A0A] text-white flex flex-col items-center">
