@@ -248,8 +248,8 @@ export default function Footer() {
             {/* GLOBAL region dropdown (single instance, styled as in screenshot) */}
             <div className="flex items-center ml-3 sm:ml-4 relative select-none flex-shrink-0" ref={regionRef}>
               <button
-                className="flex items-center text-[#888] text-[13px] sm:text-[14px] uppercase hover:text-white transition bg-[#232323] px-4 py-2 rounded-lg border border-[#292929] min-w-[110px] justify-between"
-                style={{ letterSpacing: "2px" }}
+                className="flex items-center text-[#cdcdcd] text-[18px] font-medium uppercase hover:text-white transition bg-[#232323] px-6 py-3 rounded-xl border border-[#292929] min-w-[140px] justify-between shadow-lg"
+                style={{ letterSpacing: "2px", height: '48px' }}
                 onClick={() => setShowRegionDropdown((v) => !v)}
               >
                 <span>{selectedRegion}</span>
