@@ -94,47 +94,53 @@ export default function Header() {
           {/* Display Dropdown */}
           <div className="flex items-center space-x-2 bg-[#1A1A1A] rounded-lg px-3 py-2 cursor-pointer hover:bg-[#2A2A2A] transition-colors">
            <button
-                      className="bg-[#232323] text-[#cdcdcd] text-[18px] font-medium px-6 py-2 rounded-xl border border-[#292929] shadow flex items-center gap-2 min-w-[120px] justify-between"
-                      style={{ letterSpacing: "1px" }}
+                      className="bg-[#232323] text-white text-[15px] font-semibold px-4 py-1.5 rounded-lg border border-[#292929] shadow flex items-center gap-2 min-w-[90px] justify-between"
+                      style={{ letterSpacing: "0.5px" }}
                       onClick={() => setShowDisplayDropdown((v) => !v)}
                     >
-                      Display <ChevronDown className="w-4 h-4 text-[#888] ml-2" />
+                      <span className="flex items-center gap-2">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="mr-1"><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/></svg>
+                        Display
+                      </span>
+                      <ChevronDown className="w-4 h-4 text-white ml-2" />
                     </button>
                     {showDisplayDropdown && (
-                      <div className="absolute right-0 top-full mt-2 w-[340px] bg-[#18181b] border border-[#232323] rounded-2xl shadow-2xl z-50 flex flex-col py-6 px-6" style={{maxHeight:'600px',overflowY:'auto'}}>
+                      <div className="absolute right-0 top-full mt-2 w-[420px] bg-[#18181b] border border-[#232323] rounded-2xl shadow-2xl z-50 flex flex-col py-0" style={{maxHeight:'600px',overflowY:'auto'}}>
                         <div className="mb-6">
-                          <div className="text-[#cdcdcd] text-lg font-semibold mb-2">Metrics</div>
-                          <div className="flex gap-4 mb-4">
-                            <button className="bg-[#23253a] text-[#cdcdcd] px-4 py-3 rounded-lg w-1/2 font-semibold border border-[#23253a]">MC 77K<br/><span className='text-xs'>Small</span></button>
-                            <button className="bg-transparent text-[#cdcdcd] px-4 py-3 rounded-lg w-1/2 border border-[#23253a] font-semibold">MC <span className='font-bold'>77K</span><br/><span className='text-xs'>Large</span></button>
+                          <div className="text-[#cdcdcd] text-[18px] font-medium mb-3 mt-4 ml-4">Metrics</div>
+                          <div className="flex gap-4 mb-6 px-4">
+                            <button className="bg-[#23253a] text-white px-6 py-4 rounded-lg w-1/2 font-semibold border border-[#23253a] flex flex-col items-center justify-center text-[18px]" style={{boxShadow:'0 0 0 2px #23253a'}}>
+                              MC 77K<br/><span className='text-[15px] text-[#bfcaff] mt-1'>Small</span>
+                            </button>
+                            <button className="bg-transparent text-[#bfcaff] px-6 py-4 rounded-lg w-1/2 border border-[#23253a] font-semibold flex flex-col items-center justify-center text-[18px]">MC <span className='font-bold'>77K</span><br/><span className='text-[15px] mt-1'>Large</span></button>
                           </div>
-                          <div className="text-[#cdcdcd] text-lg font-semibold mb-2">Quick Buy</div>
-                          <div className="flex gap-2 mb-4">
-                            <button className="bg-[#23253a] text-[#cdcdcd] px-4 py-2 rounded-lg border border-[#23253a] flex items-center gap-1 font-semibold"><span className='text-[#6C8CFF]'>⚡7</span> Small</button>
-                            <button className="bg-[#23253a] text-[#cdcdcd] px-4 py-2 rounded-lg border border-[#23253a] flex items-center gap-1 font-semibold"><span className='text-[#6C8CFF]'>⚡7</span> Large</button>
-                            <button className="bg-[#23253a] text-[#cdcdcd] px-4 py-2 rounded-lg border border-[#23253a] flex items-center gap-1 font-semibold"><span className='text-[#6C8CFF]'>⚡7</span> Mega</button>
-                            <button className="bg-[#23253a] text-[#888] px-4 py-2 rounded-lg border border-[#23253a] flex items-center gap-1 font-semibold"><span className='text-[#6C8CFF]'>⚡7</span> Ultra</button>
+                          <div className="text-[#cdcdcd] text-[18px] font-medium mb-3 ml-4">Quick Buy</div>
+                          <div className="flex gap-4 mb-6 px-4">
+                            <button className="bg-[#23253a] text-[#6C8CFF] px-6 py-3 rounded-lg border border-[#23253a] flex flex-col items-center font-semibold text-[16px] w-1/4"><span className='font-bold text-[15px] mb-1'>⚡7</span> Small</button>
+                            <button className="bg-[#23253a] text-[#6C8CFF] px-6 py-3 rounded-lg border border-[#23253a] flex flex-col items-center font-semibold text-[16px] w-1/4"><span className='font-bold text-[15px] mb-1'>⚡7</span> Large</button>
+                            <button className="bg-[#23253a] text-[#6C8CFF] px-6 py-3 rounded-lg border border-[#23253a] flex flex-col items-center font-semibold text-[16px] w-1/4"><span className='font-bold text-[15px] mb-1'>⚡7</span> Mega</button>
+                            <button className="bg-[#23253a] text-[#6C8CFF] px-6 py-3 rounded-lg border border-[#23253a] flex flex-col items-center font-semibold text-[16px] w-1/4 opacity-60"><span className='font-bold text-[15px] mb-1'>⚡7</span> Ultra</button>
                           </div>
-                          <div className="flex items-center gap-2 mb-4">
-                            <span className="text-[#cdcdcd] flex items-center gap-2"><span className="text-xl">☀️</span> Grey</span>
+                          <div className="flex items-center gap-2 mb-6 ml-4">
+                            <span className="text-[#cdcdcd] flex items-center gap-2 text-[20px]"><span className="text-xl">☀️</span> Grey</span>
                           </div>
                         </div>
                         <hr className="border-[#23253a] mb-6" />
-                        <div className="mb-6">
-                          <div className="flex flex-col gap-5">
-                            <div className="flex items-center gap-3 text-[#cdcdcd] text-base"><span className="text-lg">🔍</span> Show Search Bar</div>
-                            <div className="flex items-center gap-3 text-[#cdcdcd] text-base"><span className="text-lg">👁️</span> Show Hidden Tokens</div>
-                            <div className="flex items-center gap-3 text-[#cdcdcd] text-base"><span className="text-lg">🖼️</span> Circle Images</div>
-                            <div className="flex items-center gap-3 text-[#cdcdcd] text-base"><span className="text-lg">⏳</span> Progress Bar</div>
-                            <div className="flex items-center gap-3 text-[#cdcdcd] text-base"><span className="text-lg">🗃️</span> Spaced Tables</div>
+                        <div className="mb-6 px-4">
+                          <div className="flex flex-col gap-6">
+                            <div className="flex items-center gap-3 text-[#cdcdcd] text-[17px]"><span className="text-lg">🔍</span> Show Search Bar</div>
+                            <div className="flex items-center gap-3 text-[#cdcdcd] text-[17px]"><span className="text-lg">👁️</span> Show Hidden Tokens</div>
+                            <div className="flex items-center gap-3 text-[#cdcdcd] text-[17px]"><span className="text-lg">🖼️</span> Circle Images</div>
+                            <div className="flex items-center gap-3 text-[#cdcdcd] text-[17px]"><span className="text-lg">⏳</span> Progress Bar</div>
+                            <div className="flex items-center gap-3 text-[#cdcdcd] text-[17px]"><span className="text-lg">🗃️</span> Spaced Tables</div>
                           </div>
                         </div>
                         <hr className="border-[#23253a] mb-6" />
-                        <div>
-                          <div className="text-[#cdcdcd] text-lg font-semibold mb-2">Customize rows</div>
-                          <div className="flex flex-wrap gap-2">
+                        <div className="mb-4 px-4">
+                          <div className="text-[#cdcdcd] text-[18px] font-medium mb-3">Customize rows</div>
+                          <div className="flex flex-wrap gap-3">
                             {['Market Cap','Volume','Fees','TX','Socials','Holders','Pro Traders','KOLs','Dev Migrations','Top 10 Holders','Dev Holding','Funding Time','Snipers','Insiders','Bundlers','Dex Paid'].map(row => (
-                              <span key={row} className="bg-[#23253a] text-[#cdcdcd] px-3 py-2 rounded-lg text-sm font-semibold">{row}</span>
+                              <span key={row} className="bg-[#23253a] text-[#bfcaff] px-4 py-2 rounded-lg text-[15px] font-semibold">{row}</span>
                             ))}
                           </div>
                         </div>
