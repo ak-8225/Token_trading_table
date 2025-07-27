@@ -46,12 +46,21 @@ const presetList = [
   "PRESET 3"
 ];
 
-const localeList = [
-  "GLOBAL",
-  "US-EN",
-  "EU-EN",
-  "ASIA"
+// Replace the localeList and selectedLocale logic with the new region options
+const regionList = [
+  "US-W",
+  "US-C",
+  "US-E",
+  "EU-W",
+  "EU-C",
+  "EU-E",
+  "ASIA",
+  "AUS",
+  "GLOBAL"
 ];
+const [showRegionDropdown, setShowRegionDropdown] = useState(false);
+const [selectedRegion, setSelectedRegion] = useState(regionList[8]); // Default to GLOBAL
+const regionRef = useRef<HTMLDivElement>(null);
 
 export default function Footer() {
   const [showPresetDropdown, setShowPresetDropdown] = useState(false);
@@ -69,13 +78,13 @@ export default function Footer() {
       if (showPresetDropdown && presetRef.current && !presetRef.current.contains(e.target as Node)) {
         setShowPresetDropdown(false);
       }
-      if (showLocaleDropdown && localeRef.current && !localeRef.current.contains(e.target as Node)) {
-        setShowLocaleDropdown(false);
+      if (showRegionDropdown && regionRef.current && !regionRef.current.contains(e.target as Node)) {
+        setShowRegionDropdown(false);
       }
     }
     window.addEventListener('mousedown', handle);
     return () => window.removeEventListener('mousedown', handle);
-  }, [showPresetDropdown, showLocaleDropdown]);
+  }, [showPresetDropdown, showRegionDropdown]);
 
   const closeTab = (key: string) => setTabs(prev => prev.filter(tab => tab.key !== key));
   const switchTab = (key: string) => setActiveTab(key);
@@ -240,12 +249,36 @@ export default function Footer() {
             <div className="w-[5px] h-[5px] sm:w-[6px] sm:h-[6px] bg-[#4caf50] rounded-full mr-1"></div>
             <span className="text-[#4caf50] text-[9px] sm:text-[10px] leading-none whitespace-nowrap">Connection is stable</span>
             
-            {/* GLOBAL dropdown */}
-            <div className="flex items-center ml-3 sm:ml-4">
-              <span className="text-[#888] text-[10px] sm:text-[11px] uppercase">GLOBAL</span>
-              <ChevronDown className="w-2 h-2 sm:w-3 sm:h-3 text-[#888] ml-1" />
-        </div>
-      </div>
+            {/* GLOBAL region dropdown (single instance, styled as in screenshot) */}
+            <div className="flex items-center ml-3 sm:ml-4 relative select-none flex-shrink-0" ref={regionRef}>
+              <button
+                className="flex items-center text-[#888] text-[10px] sm:text-[11px] uppercase hover:text-white transition bg-[#232323] px-3 py-1 rounded border border-[#292929] min-w-[90px] justify-between"
+                style={{ letterSpacing: "1px" }}
+                onClick={() => setShowRegionDropdown((v) => !v)}
+              >
+                <span>{selectedRegion}</span>
+                <ChevronDown className="w-3 h-3 text-[#888] ml-2" />
+              </button>
+              {showRegionDropdown && (
+                <div className="absolute left-0 mt-2 w-32 bg-[#232323] border border-[#292929] rounded shadow z-50 flex flex-col py-1">
+                  {regionList.map(region => (
+                    <div
+                      key={region}
+                      className={`px-4 py-2 text-[13px] cursor-pointer flex items-center justify-between ${region === selectedRegion ? 'bg-[#18181b] text-white font-bold' : 'hover:bg-[#18181b] text-[#cdcdcd]'}`}
+                      onClick={() => {
+                        setSelectedRegion(region);
+                        setShowRegionDropdown(false);
+                      }}
+                    >
+                      <span>{region}</span>
+                      {region === "GLOBAL" && <span className="ml-2 text-yellow-400">&#9888;</span>}
+                      {region === selectedRegion && <ChevronDown className="w-3 h-3 text-[#888] ml-2" />}
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          </div>
       
           {/* Locale dropdown */}
           <div className="flex items-center ml-2 sm:ml-3 md:ml-6 relative select-none flex-shrink-0" ref={localeRef}>
