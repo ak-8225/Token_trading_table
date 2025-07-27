@@ -52,7 +52,7 @@ const [showDisplayDropdown, setShowDisplayDropdown] = useState(false);
           )}
         </div>
       </div>
-"use client";
+// ...existing code...
 import React, { useState, useRef, useEffect } from "react";
 import {
   Star,
