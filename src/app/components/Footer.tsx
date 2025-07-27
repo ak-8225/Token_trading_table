@@ -1,3 +1,55 @@
+// Display dropdown state
+const [showDisplayDropdown, setShowDisplayDropdown] = useState(false);
+      {/* Display Button (top right) */}
+      <div className="absolute top-2 right-2 z-50">
+        <div className="relative">
+          <button
+            className="bg-[#232323] text-[#cdcdcd] text-[18px] font-medium px-6 py-2 rounded-xl border border-[#292929] shadow flex items-center gap-2 min-w-[120px] justify-between"
+            style={{ letterSpacing: "1px" }}
+            onClick={() => setShowDisplayDropdown((v) => !v)}
+          >
+            Display <ChevronDown className="w-4 h-4 text-[#888] ml-2" />
+          </button>
+          {showDisplayDropdown && (
+            <div className="absolute right-0 bottom-full mb-2 w-[340px] bg-[#232323] border border-[#292929] rounded-2xl shadow-2xl z-50 flex flex-col py-6 px-6" style={{maxHeight:'600px',overflowY:'auto'}}>
+              <div className="mb-6">
+                <div className="text-[#cdcdcd] text-lg font-semibold mb-2">Metrics</div>
+                <div className="flex gap-4 mb-4">
+                  <button className="bg-[#18181b] text-[#cdcdcd] px-4 py-3 rounded-lg w-1/2">MC 77K<br/><span className='text-xs'>Small</span></button>
+                  <button className="bg-[#232323] text-[#cdcdcd] px-4 py-3 rounded-lg w-1/2 border border-[#292929]">MC 77K<br/><span className='text-xs'>Large</span></button>
+                </div>
+                <div className="text-[#cdcdcd] text-lg font-semibold mb-2">Quick Buy</div>
+                <div className="flex gap-2 mb-4">
+                  <button className="bg-[#232323] text-[#cdcdcd] px-4 py-2 rounded-lg border border-[#292929]">Small <span className='ml-1 text-[#6C8CFF]'>⚡7</span></button>
+                  <button className="bg-[#232323] text-[#cdcdcd] px-4 py-2 rounded-lg border border-[#292929]">Large <span className='ml-1 text-[#6C8CFF]'>⚡7</span></button>
+                  <button className="bg-[#232323] text-[#cdcdcd] px-4 py-2 rounded-lg border border-[#292929]">Mega <span className='ml-1 text-[#6C8CFF]'>⚡7</span></button>
+                  <button className="bg-[#232323] text-[#cdcdcd] px-4 py-2 rounded-lg border border-[#292929]">Ultra <span className='ml-1 text-[#6C8CFF]'>⚡7</span></button>
+                </div>
+                <div className="flex items-center gap-2 mb-4">
+                  <span className="text-[#cdcdcd]">🌙 Grey</span>
+                </div>
+              </div>
+              <div className="mb-6">
+                <div className="flex flex-col gap-3">
+                  <div className="flex items-center gap-2 text-[#cdcdcd] text-base"><span>🔍</span> Show Search Bar</div>
+                  <div className="flex items-center gap-2 text-[#cdcdcd] text-base"><span>👁️</span> Show Hidden Tokens</div>
+                  <div className="flex items-center gap-2 text-[#cdcdcd] text-base"><span>🖼️</span> Circle Images</div>
+                  <div className="flex items-center gap-2 text-[#cdcdcd] text-base"><span>⏳</span> Progress Bar</div>
+                  <div className="flex items-center gap-2 text-[#cdcdcd] text-base"><span>🗃️</span> Spaced Tables</div>
+                </div>
+              </div>
+              <div>
+                <div className="text-[#cdcdcd] text-lg font-semibold mb-2">Customize rows</div>
+                <div className="flex flex-wrap gap-2">
+                  {['Market Cap','Volume','Fees','TX','Socials','Holders','Pro Traders','KOLs','Dev Migrations','Top 10 Holders','Dev Holding','Funding Time','Snipers','Insiders','Bundlers','Dex Paid'].map(row => (
+                    <span key={row} className="bg-[#18181b] text-[#cdcdcd] px-3 py-2 rounded-lg text-sm">{row}</span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
 "use client";
 import React, { useState, useRef, useEffect } from "react";
 import {
@@ -285,19 +337,17 @@ export default function Footer() {
                 <ChevronDown className="w-4 h-4 text-[#888] ml-2" />
               </button>
               {showRegionDropdown && (
-                <div className="absolute left-0 bottom-full mb-2 w-56 bg-[#232323] border border-[#292929] rounded-2xl shadow-2xl z-50 flex flex-col py-2" style={{maxHeight:'400px',overflowY:'auto'}}>
+                <div className="absolute left-0 bottom-full mb-2 w-44 bg-[#232323] border border-[#292929] rounded-xl shadow-lg z-50 flex flex-col py-2" style={{maxHeight:'400px',overflowY:'auto'}}>
                   {regionList.map(region => (
                     <div
                       key={region}
-                      className={`px-8 py-4 text-[18px] cursor-pointer flex items-center justify-between ${region === selectedRegion ? 'bg-[#18181b] text-white font-bold' : 'hover:bg-[#18181b] text-[#cdcdcd]'}`}
+                      className={`px-6 py-3 text-[15px] cursor-pointer flex items-center ${region === selectedRegion ? 'bg-[#18181b] text-white font-bold' : 'hover:bg-[#18181b] text-[#cdcdcd]'}`}
                       onClick={() => {
                         setSelectedRegion(region);
                         setShowRegionDropdown(false);
                       }}
                     >
                       <span>{region}</span>
-                      {region === "GLOBAL" && <span className="ml-2 text-yellow-400">&#9888;</span>}
-                      {region === selectedRegion && <ChevronDown className="w-5 h-5 text-[#888] ml-2" />}
                     </div>
                   ))}
                 </div>
