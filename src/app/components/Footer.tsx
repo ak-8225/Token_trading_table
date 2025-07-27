@@ -248,19 +248,19 @@ export default function Footer() {
             {/* GLOBAL region dropdown (single instance, styled as in screenshot) */}
             <div className="flex items-center ml-3 sm:ml-4 relative select-none flex-shrink-0" ref={regionRef}>
               <button
-                className="flex items-center text-[#888] text-[10px] sm:text-[11px] uppercase hover:text-white transition bg-[#232323] px-3 py-1 rounded border border-[#292929] min-w-[90px] justify-between"
-                style={{ letterSpacing: "1px" }}
+                className="flex items-center text-[#888] text-[13px] sm:text-[14px] uppercase hover:text-white transition bg-[#232323] px-4 py-2 rounded-lg border border-[#292929] min-w-[110px] justify-between"
+                style={{ letterSpacing: "2px" }}
                 onClick={() => setShowRegionDropdown((v) => !v)}
               >
                 <span>{selectedRegion}</span>
-                <ChevronDown className="w-3 h-3 text-[#888] ml-2" />
+                <ChevronDown className="w-4 h-4 text-[#888] ml-2" />
               </button>
               {showRegionDropdown && (
-                <div className="absolute left-0 mt-2 w-32 bg-[#232323] border border-[#292929] rounded shadow z-50 flex flex-col py-1">
+                <div className="absolute left-0 mt-2 w-44 bg-[#18181b] border border-[#292929] rounded-xl shadow-lg z-50 flex flex-col py-2" style={{maxHeight:'400px',overflowY:'auto'}}>
                   {regionList.map(region => (
                     <div
                       key={region}
-                      className={`px-4 py-2 text-[13px] cursor-pointer flex items-center justify-between ${region === selectedRegion ? 'bg-[#18181b] text-white font-bold' : 'hover:bg-[#18181b] text-[#cdcdcd]'}`}
+                      className={`px-6 py-3 text-[15px] cursor-pointer flex items-center justify-between ${region === selectedRegion ? 'bg-[#232323] text-white font-bold' : 'hover:bg-[#232323] text-[#cdcdcd]'}`}
                       onClick={() => {
                         setSelectedRegion(region);
                         setShowRegionDropdown(false);
@@ -268,7 +268,7 @@ export default function Footer() {
                     >
                       <span>{region}</span>
                       {region === "GLOBAL" && <span className="ml-2 text-yellow-400">&#9888;</span>}
-                      {region === selectedRegion && <ChevronDown className="w-3 h-3 text-[#888] ml-2" />}
+                      {region === selectedRegion && <ChevronDown className="w-4 h-4 text-[#888] ml-2" />}
                     </div>
                   ))}
                 </div>
