@@ -16,7 +16,7 @@ export default function Header() {
           <div className="flex items-center min-w-0 flex-1">
             {/* Logo and Brand */}
             <div className="flex items-center space-x-1 sm:space-x-2 flex-shrink-0 select-none">
-              <svg width="32" height="32" viewBox="0 0 32 32" className="mr-4" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <svg width="40" height="40" viewBox="0 0 32 32" className="mr-4" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <polygon points="16,8 24,18 8,18" fill="white" />
                 <polygon points="6,24 26,24 24,20 8,20" fill="white" />
               </svg>
