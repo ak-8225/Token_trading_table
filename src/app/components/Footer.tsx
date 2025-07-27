@@ -58,20 +58,16 @@ const regionList = [
   "AUS",
   "GLOBAL"
 ];
-const [showRegionDropdown, setShowRegionDropdown] = useState(false);
-const [selectedRegion, setSelectedRegion] = useState(regionList[8]); // Default to GLOBAL
-const regionRef = useRef<HTMLDivElement>(null);
 
 export default function Footer() {
   const [showPresetDropdown, setShowPresetDropdown] = useState(false);
-  const [showLocaleDropdown, setShowLocaleDropdown] = useState(false);
   const [activeTab, setActiveTab] = useState("wallet");
   const [tabs, setTabs] = useState(trackerTabs);
   const [selectedPreset, setSelectedPreset] = useState(presetList[0]);
-  const [selectedLocale, setSelectedLocale] = useState(localeList[0]);
-
+  const [selectedRegion, setSelectedRegion] = useState(regionList[8]); // Default to GLOBAL
+  const [showRegionDropdown, setShowRegionDropdown] = useState(false);
+  const regionRef = useRef<HTMLDivElement>(null);
   const presetRef = useRef<HTMLDivElement>(null);
-  const localeRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     function handle(e: MouseEvent) {
@@ -281,33 +277,7 @@ export default function Footer() {
           </div>
       
           {/* Locale dropdown */}
-          <div className="flex items-center ml-2 sm:ml-3 md:ml-6 relative select-none flex-shrink-0" ref={localeRef}>
-            <button
-              className="flex items-center text-[#888] text-[10px] sm:text-[11px] uppercase hover:text-white transition"
-              style={{ letterSpacing: "1px" }}
-              onClick={() => setShowLocaleDropdown((v) => !v)}
-            >
-              <span className="hidden sm:inline">{selectedLocale}</span>
-              <span className="sm:hidden">GL</span>
-              <ChevronDown className="w-2 h-2 sm:w-3 sm:h-3 text-[#888] ml-1" />
-            </button>
-            {showLocaleDropdown && (
-              <div className="absolute right-0 mt-2 w-20 sm:w-24 bg-[#24292f] border border-[#292929] rounded shadow z-50">
-                {localeList.map(locale => (
-                  <div
-                    key={locale}
-                    className={`py-1 px-2 sm:px-3 text-[10px] sm:text-[11px] cursor-pointer ${locale === selectedLocale ? 'bg-[#1976d2] text-white font-bold' : 'hover:bg-[#222f52] text-[#cdcdcd]'}`}
-                    onClick={() => {
-                      setSelectedLocale(locale);
-                      setShowLocaleDropdown(false);
-                    }}
-                  >
-                    {locale}
-                  </div>
-                ))}
-              </div>
-            )}
-        </div>
+          {/* The locale dropdown block has been removed as per the edit hint. */}
 
           {/* Additional Icons Section */}
           <div className="flex items-center ml-1 sm:ml-2 md:ml-4 flex-shrink-0">
