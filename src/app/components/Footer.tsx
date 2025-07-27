@@ -98,20 +98,49 @@ export default function Footer() {
         >
         {/* 1. PRESET SELECTOR */}
         <div className="flex items-center h-full pr-1 sm:pr-3 relative select-none min-w-[100px] sm:min-w-[130px] md:min-w-[160px] flex-shrink-0" ref={presetRef}>
-          <button
-            className="flex items-center bg-[#2533A8] hover:bg-[#1a255e] text-[#B1C6FF] font-semibold text-[10px] sm:text-[11px] h-[26px] px-[8px] sm:px-[10px] rounded border-0 focus:outline-none focus:ring-0 active:border-0 focus:border-0 hover:border-0 border-transparent focus:border-transparent active:border-transparent"
-            style={{ border: 'none', outline: 'none', boxShadow: 'none' }}
-            onClick={() => setShowPresetDropdown((v) => !v)}
-          >
-          <span className="flex items-center mr-1">
-              <svg width="14" height="14" className="sm:w-[16px] sm:h-[16px]" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                <path d="M12 2v2m0 16v2m10-10h-2M4 12H2m15.07-7.07l-1.41 1.41M6.34 17.66l-1.41 1.41m12.02 0l-1.41-1.41M6.34 6.34L4.93 4.93"/>
-            </svg>
-          </span>
-            <span className="truncate hidden sm:inline">{selectedPreset}</span>
-            <span className="truncate sm:hidden">P1</span>
-            <ChevronDown className="w-3 h-3 ml-1" />
-        </button>
+          <div className="relative">
+            <button
+              className="flex items-center bg-[#2533A8] hover:bg-[#1a255e] text-[#B1C6FF] font-semibold text-[10px] sm:text-[11px] h-[26px] px-[8px] sm:px-[10px] rounded border-0 focus:outline-none focus:ring-0 active:border-0 focus:border-0 hover:border-0 border-transparent focus:border-transparent active:border-transparent"
+              style={{ border: 'none', outline: 'none', boxShadow: 'none' }}
+              onClick={() => setShowPresetDropdown((v) => !v)}
+            >
+              <span className="flex items-center mr-1">
+                <svg width="14" height="14" className="sm:w-[16px] sm:h-[16px]" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                  <path d="M12 2v2m0 16v2m10-10h-2M4 12H2m15.07-7.07l-1.41 1.41M6.34 17.66l-1.41 1.41m12.02 0l-1.41-1.41M6.34 6.34L4.93 4.93"/>
+                </svg>
+              </span>
+              <span className="truncate hidden sm:inline">{selectedPreset}</span>
+              <span className="truncate sm:hidden">P1</span>
+              <ChevronDown className="w-3 h-3 ml-1" />
+            </button>
+            {showPresetDropdown && (
+              <div className="absolute left-0 bottom-full mb-2 w-56 bg-[#232323] border border-[#292929] rounded-2xl shadow-2xl z-50 flex flex-col py-4">
+                <div className="px-6 py-3 text-[18px] text-[#B1C6FF] font-bold flex items-center gap-2">
+                  <svg width="24" height="24" fill="none" stroke="#B1C6FF" strokeWidth="2" viewBox="0 0 24 24">
+                    <rect x="3" y="7" width="18" height="10" rx="2"/>
+                    <rect x="7" y="11" width="2" height="2" rx="1"/>
+                    <rect x="15" y="11" width="2" height="2" rx="1"/>
+                  </svg>
+                  <span>1</span>
+                  <span className="mx-2 w-8 h-1 bg-gradient-to-r from-[#6C8CFF] to-[#9945FF] rounded-full"></span>
+                  <span className="bg-[#232323] px-2 py-1 rounded text-[#B1C6FF]">0</span>
+                </div>
+                {/* ...existing dropdown code... */}
+                {presetList.map((name) => (
+                  <div
+                    key={name}
+                    className={`py-2 px-6 text-[15px] cursor-pointer ${name === selectedPreset ? 'bg-[#1976d2] text-white font-bold' : 'hover:bg-[#222f52] text-[#cdcdcd]'}`}
+                    onClick={() => {
+                      setSelectedPreset(name);
+                      setShowPresetDropdown(false);
+                    }}
+                  >
+                    {name}
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
           {showPresetDropdown && (
             <div className="absolute left-0 top-[110%] mt-1 w-28 sm:w-32 md:w-36 bg-[#24292f] border border-[#292929] rounded overflow-hidden shadow-md z-50">
               {presetList.map((name) => (
@@ -248,19 +277,19 @@ export default function Footer() {
             {/* GLOBAL region dropdown (single instance, styled as in screenshot) */}
             <div className="flex items-center ml-3 sm:ml-4 relative select-none flex-shrink-0" ref={regionRef}>
               <button
-                className="flex items-center text-[#cdcdcd] text-[18px] font-medium uppercase hover:text-white transition bg-[#232323] px-6 py-3 rounded-xl border border-[#292929] min-w-[140px] justify-between shadow-lg"
-                style={{ letterSpacing: "2px", height: '48px' }}
+                className="flex items-center text-[#cdcdcd] text-[13px] font-medium uppercase hover:text-white transition bg-[#232323] px-4 py-2 rounded-lg border border-[#292929] min-w-[90px] justify-between shadow"
+                style={{ letterSpacing: "2px", height: '32px' }}
                 onClick={() => setShowRegionDropdown((v) => !v)}
               >
                 <span>{selectedRegion}</span>
                 <ChevronDown className="w-4 h-4 text-[#888] ml-2" />
               </button>
               {showRegionDropdown && (
-                <div className="absolute left-0 bottom-full mb-2 w-44 bg-[#18181b] border border-[#292929] rounded-xl shadow-lg z-50 flex flex-col py-2" style={{maxHeight:'400px',overflowY:'auto'}}>
+                <div className="absolute left-0 bottom-full mb-2 w-56 bg-[#232323] border border-[#292929] rounded-2xl shadow-2xl z-50 flex flex-col py-2" style={{maxHeight:'400px',overflowY:'auto'}}>
                   {regionList.map(region => (
                     <div
                       key={region}
-                      className={`px-6 py-3 text-[15px] cursor-pointer flex items-center justify-between ${region === selectedRegion ? 'bg-[#232323] text-white font-bold' : 'hover:bg-[#232323] text-[#cdcdcd]'}`}
+                      className={`px-8 py-4 text-[18px] cursor-pointer flex items-center justify-between ${region === selectedRegion ? 'bg-[#18181b] text-white font-bold' : 'hover:bg-[#18181b] text-[#cdcdcd]'}`}
                       onClick={() => {
                         setSelectedRegion(region);
                         setShowRegionDropdown(false);
@@ -268,7 +297,7 @@ export default function Footer() {
                     >
                       <span>{region}</span>
                       {region === "GLOBAL" && <span className="ml-2 text-yellow-400">&#9888;</span>}
-                      {region === selectedRegion && <ChevronDown className="w-4 h-4 text-[#888] ml-2" />}
+                      {region === selectedRegion && <ChevronDown className="w-5 h-5 text-[#888] ml-2" />}
                     </div>
                   ))}
                 </div>
