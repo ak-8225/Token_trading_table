@@ -1,3 +1,5 @@
+"use client";
+
 // Display dropdown state
 const [showDisplayDropdown, setShowDisplayDropdown] = useState(false);
       {/* Display Button (top right) */}
